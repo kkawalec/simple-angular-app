@@ -3,18 +3,24 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { routing } from './app.routes';
 import { AppComponent } from './app.component';
+import { CatsTableComponent } from './cats/cats-table.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CatsTableComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
