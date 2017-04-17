@@ -6,7 +6,7 @@ import { Pokemon } from '../models/pokemon'
 import {Observable} from 'rxjs/Rx';
 // Decorator to tell Angular that this class can be injected as a service to another class
 @Injectable()
-export class PetService {
+export class PokemonService {
 
   // Class constructor with Jsonp injected
   constructor(private http: Http) { }

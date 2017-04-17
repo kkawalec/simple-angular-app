@@ -2,23 +2,23 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
-import { PetService } from '../services/pet.service'
+import { PokemonService } from '../services/pokemon.service'
 import { Pokemon } from '../models/pokemon'
 
 @Component({
-  templateUrl: './cats-table.component.html',
+  templateUrl: './pokemon-table.component.html',
 })
 
 // Component class
-export class CatsTableComponent implements OnInit {
+export class PokemonTableComponent implements OnInit {
   pokemons:Pokemon[];
 
-  constructor(private petService: PetService) {
+  constructor(private pokemonService: PokemonService) {
 
   }
 
   getPokemons(): void {
-     this.petService.getPokemons().subscribe(
+     this.pokemonService.getPokemons().subscribe(
       (res) => this.pokemons = res,
       (err) => console.log(err),
       () => true

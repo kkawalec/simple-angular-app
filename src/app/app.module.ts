@@ -5,13 +5,13 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
-import { CatsTableComponent } from './cats/cats-table.component'
+import { PokemonTableComponent } from './pokemon/pokemon-table.component'
 
-import { PetService } from './services/pet.service'
+import { PokemonService } from './services/pokemon.service'
 @NgModule({
   declarations: [
     AppComponent,
-    CatsTableComponent,
+    PokemonTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,7 @@ import { PetService } from './services/pet.service'
     routing
   ],
   providers: [
-    PetService
+    PokemonService
   ],
   bootstrap: [AppComponent]
 })

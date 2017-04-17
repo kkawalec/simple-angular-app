@@ -1,15 +1,15 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CatsTableComponent } from './cats/cats-table.component';
+import { PokemonTableComponent } from './pokemon/pokemon-table.component';
 
 // Route Configuration
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/cats',
+    redirectTo: '/pokemon',
     pathMatch: 'full'
   },
-  { path: 'cats', component: CatsTableComponent },
+  { path: 'pokemon', component: PokemonTableComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
