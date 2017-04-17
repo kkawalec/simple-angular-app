@@ -1,9 +1,18 @@
 <h2>Pokemon table</h2>
+Limit
+<select (change)="onLimitChange($event.target.value)" value={{limit}}>
+  <option value="10">10</option>
+  <option value="25">25</option>
+  <option value="100">100</option>
+</select>
+
+Search:
+<input (keyup)="onSearch($event.target.value)" value={{filter}} type="text" />
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Api url</th>
+      <th (click)="onSort('name')">Name</th>
+      <th (click)="onSort('url')">Api url</th>
       <th>Details</th>
     </tr>
   </thead>
@@ -15,3 +24,14 @@
     </tr>
   </tbody>
 </table>
+
+<div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+</div>
