@@ -11,13 +11,13 @@ export class PetService {
   constructor(private http: Http) { }
 
   // Base URL for Petfinder API
-  private todosUrl = 'http://jsonplaceholder.typicode.com/todos';
+  private todosUrl = 'http://pokeapi.co/api/v2/generation/1';
 
-  getTodos() {
+  getPokemons() {
     // Return response
     return this.http
       .get(this.todosUrl )
-      .map(response => <string[]> response.json());
+      .map(response => <string[]> response.json().pokemon_species);
   }
 
   // get a pet based on their id

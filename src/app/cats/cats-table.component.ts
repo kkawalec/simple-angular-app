@@ -10,7 +10,7 @@ import { PetService } from '../services/pet.service'
 
 // Component class
 export class CatsTableComponent implements OnInit {
-  todos:string[];
+  pokemons:string[];
 
   constructor(private petService: PetService) {
 
@@ -18,8 +18,8 @@ export class CatsTableComponent implements OnInit {
 
   ngOnInit() {
     // Pass retreived pets to the property
-     this.petService.getTodos().subscribe(
-      (res) => this.todos = res,
+     this.petService.getPokemons().subscribe(
+      (res) => this.pokemons = res,
       (err) => console.log(err),
       () => true
     );
