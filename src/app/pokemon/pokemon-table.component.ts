@@ -1,4 +1,3 @@
-// Import component decorator
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
@@ -9,7 +8,9 @@ import { Pokemon } from '../models/pokemon'
   templateUrl: './pokemon-table.component.html',
 })
 
-// Component class
+/**
+ * PokemonTableComponent class
+ */
 export class PokemonTableComponent implements OnInit {
 
   /**
@@ -81,6 +82,9 @@ export class PokemonTableComponent implements OnInit {
     this.page = 1;
     this.limit = 10;
     this.pages = [];
+    this.startIndex = 0;
+    this.endIndex = 0;
+    this.rowsCount = 0;
    }
 
   /**
@@ -103,7 +107,6 @@ export class PokemonTableComponent implements OnInit {
    */
   ngOnInit() {
     this.getPokemons()
-   // console.log(this)
   }
 
   /**
@@ -141,7 +144,7 @@ export class PokemonTableComponent implements OnInit {
 
     //starting index of remaining array
     this.startIndex = this.page * this.limit - this.limit;
-    this.endIndex = this.page * this.limit;
+    this.endIndex = this.page * this.limit - 1;
     tempPokemonArr = tempPokemonArr.filter((pok, index) => index >= this.startIndex && index <= this.endIndex)
 
     this.pokemons = tempPokemonArr;
@@ -178,7 +181,8 @@ export class PokemonTableComponent implements OnInit {
   }
 
   /**
-   * onClick handler for paginaion
+   * onClick handler for pagination
+   * @param {number} pageNumber
    */
   onPageChange(pageNumber): void {
     if(pageNumber < 1 || pageNumber > this.lastPage) return;
@@ -188,6 +192,7 @@ export class PokemonTableComponent implements OnInit {
 
   /**
    * checking if pagination link is disabled
+   * @param {number} pageNumber
    */
   checkIfDisable(pageNumber): boolean {
     return pageNumber < 1 || pageNumber > this.lastPage;

@@ -1,35 +1,49 @@
-<h2>Pokemon table</h2>
-Limit
-<select (change)="onLimitChange($event.target.value)" value={{limit}}>
-  <option value="10">10</option>
-  <option value="25">25</option>
-  <option value="100">100</option>
-</select>
+<h4>Pokemons - Gotta Catch Em' All!</h4>
+<div class="row">
+  <div class="col-sm-6">
+    Limit
+    <select (change)="onLimitChange($event.target.value)" value={{limit}}>
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+  <div class="col-sm-6">
+    Search:
+    <input (keyup)="onSearch($event.target.value)" value={{filter}} type="text" />
+  </div>
 
-Search:
-<input (keyup)="onSearch($event.target.value)" value={{filter}} type="text" />
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th (click)="onSort('name')">Name</th>
-      <th (click)="onSort('url')">Api url</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let pokemon of pokemons">
-      <td>{{ pokemon.name }}</td>
-      <td>{{ pokemon.url }}</td>
-      <td>DETAILS</td>
-    </tr>
-  </tbody>
-</table>
+  <div class="col-sm-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th (click)="onSort('name')">Name</th>
+          <th (click)="onSort('url')">Api url</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pokemon of pokemons">
+          <td>{{ pokemon.name }}</td>
+          <td>{{ pokemon.url }}</td>
+          <td>DETAILS</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-<div class="pagination" *ngIf="(pages.length > 0)">
-  <a (click)="onPageChange(1)" [class.disabled]="(page === 1)">&laquo;</a>
-  <a (click)="onPageChange(page-1)" [class.disabled]="checkIfDisable(page-1)">&lsaquo;</a>
-  <a *ngFor="let curPage of pages" (click)="onPageChange(curPage)" [class.disabled]="checkIfDisable(curPage)" [class.active]="(curPage === page)">{{ curPage }}</a>
-  <a (click)="onPageChange(page + 1)" [class.disabled]="checkIfDisable(page + 1)">&rsaquo;</a>
-  <a (click)="onPageChange(lastPage)" [class.disabled]="(page === lastPage)">&raquo;</a>
-
+  <div class="col-sm-6">
+    <div class="results">
+      Showing {{ this.startIndex + 1 }} to {{ this.endIndex + 1 > rowsCount ? rowsCount : this.endIndex + 1 }} of {{ rowsCount }} entries
+    </div>
+  </div>
+    <div class="col-sm-6">
+      <div class="pagination pull-right" *ngIf="(pages.length > 0)">
+        <a (click)="onPageChange(1)" [class.disabled]="(page === 1)">&laquo;</a>
+        <a (click)="onPageChange(page-1)" [class.disabled]="checkIfDisable(page-1)">&lsaquo;</a>
+        <a *ngFor="let curPage of pages" (click)="onPageChange(curPage)" [class.disabled]="checkIfDisable(curPage)" [class.active]="(curPage === page)">{{ curPage }}</a>
+        <a (click)="onPageChange(page + 1)" [class.disabled]="checkIfDisable(page + 1)">&rsaquo;</a>
+        <a (click)="onPageChange(lastPage)" [class.disabled]="(page === lastPage)">&raquo;</a>
+      </div>
+  </div>
 </div>
