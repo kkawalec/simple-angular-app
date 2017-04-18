@@ -1,25 +1,6 @@
-<div class="demo-layout-transparent mdl-layout mdl-js-layout">
-      <header class="mdl-layout__header mdl-layout__header--transparent">
-        <div class="mdl-layout__header-row">
+<div class="main-nav">
+  <navigation></navigation>
+</div>
 
-          <!-- Title -->
-          <span class="mdl-layout-title">{{ title }}</span>
-
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-
-          <!-- Navigation with router directives-->
-          <!--<nav class="mdl-navigation">
-            <a class="mdl-navigation__link" [routerLink]="['/pokemon']">Pokemons</a>
-          </nav>-->
-          <navigation></navigation>
-        </div>
-      </header>
-
-      <main class="mdl-layout__content">
-        <h1 class="header-text">Pokemon App</h1>
-      </main>
-    </div>
-
-    <!-- Router Outlet -->
-    <router-outlet></router-outlet>
+<!-- Router Outlet -->
+<router-outlet></router-outlet>
