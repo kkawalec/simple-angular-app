@@ -25,8 +25,11 @@ Search:
   </tbody>
 </table>
 
-<div class="pagination">
-  <a>&laquo;</a>
-  <a *ngFor="let page of pages">{{ page }}</a>
-  <a href="#">&raquo;</a>
+<div class="pagination" *ngIf="(pages.length > 0)">
+  <a (click)="onPageChange(1)" [class.disabled]="(page === 1)">&laquo;</a>
+  <a (click)="onPageChange(page-1)" [class.disabled]="checkIfDisable(page-1)">&lsaquo;</a>
+  <a *ngFor="let curPage of pages" (click)="onPageChange(curPage)" [class.disabled]="checkIfDisable(curPage)" [class.active]="(curPage === page)">{{ curPage }}</a>
+  <a (click)="onPageChange(page + 1)" [class.disabled]="checkIfDisable(page + 1)">&rsaquo;</a>
+  <a (click)="onPageChange(lastPage)" [class.disabled]="(page === lastPage)">&raquo;</a>
+
 </div>

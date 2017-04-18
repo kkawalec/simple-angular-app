@@ -41,6 +41,11 @@ export class PokemonTableComponent implements OnInit {
   public page: number;
 
   /**
+   * last page number
+   */
+  public lastPage: number;
+
+  /**
    * limit on the page
    */
   public limit: number;
@@ -75,6 +80,7 @@ export class PokemonTableComponent implements OnInit {
     this.filter = '';
     this.page = 1;
     this.limit = 10;
+    this.pages = [];
    }
 
   /**
@@ -122,7 +128,7 @@ export class PokemonTableComponent implements OnInit {
     this.rowsCount = tempPokemonArr.length
     // paginate
     // count of all pages
-    const pagesCount = Math.ceil(this.rowsCount/this.limit);
+    this.lastPage = Math.ceil(this.rowsCount/this.limit);
 
     // all pages list
     this.pages = [
@@ -131,10 +137,10 @@ export class PokemonTableComponent implements OnInit {
         this.page,
         this.page+1,
         this.page+2
-        ].filter(value => (value > pagesCount || value < 1) ? false : true );
+        ].filter(value => (value > this.lastPage || value < 1) ? false : true );
 
     //starting index of remaining array
-    this.startIndex = this.page * this.limit - this.limit + 1;
+    this.startIndex = this.page * this.limit - this.limit;
     this.endIndex = this.page * this.limit;
     tempPokemonArr = tempPokemonArr.filter((pok, index) => index >= this.startIndex && index <= this.endIndex)
 
@@ -157,6 +163,7 @@ export class PokemonTableComponent implements OnInit {
    */
   onLimitChange(value): void {
     this.limit = value;
+    this.page = 1;
     this.handleChangingParameters()
   }
 
@@ -166,6 +173,23 @@ export class PokemonTableComponent implements OnInit {
    */
   onSearch(value): void {
     this.filter = value;
+    this.page = 1;
     this.handleChangingParameters()
+  }
+
+  /**
+   * onClick handler for paginaion
+   */
+  onPageChange(pageNumber): void {
+    if(pageNumber < 1 || pageNumber > this.lastPage) return;
+    this.page = pageNumber;
+    this.handleChangingParameters()
+  }
+
+  /**
+   * checking if pagination link is disabled
+   */
+  checkIfDisable(pageNumber): boolean {
+    return pageNumber < 1 || pageNumber > this.lastPage;
   }
 }
