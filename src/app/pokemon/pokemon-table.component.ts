@@ -29,10 +29,6 @@ export class PokemonTableComponent implements OnInit {
    */
   public sortColumn: string;
   public sortType: number;
-  // {
-  //   column: 'name',
-  //   type: 1
-  // };
 
   /**
    * filter
@@ -48,6 +44,26 @@ export class PokemonTableComponent implements OnInit {
    * limit on the page
    */
   public limit: number;
+
+  /**
+   * pages number for pagination
+   */
+  public pages: number[];
+
+  /**
+   * sorted/filtered rows count
+   */
+  public rowsCount: number;
+
+  /**
+   * starting index of rows on the selected page
+   */
+  public startIndex: number;
+
+  /**
+   * last index of rows on the selected page
+   */
+  public endIndex: number;
 
   /**
    * constructor
@@ -69,6 +85,7 @@ export class PokemonTableComponent implements OnInit {
       (res) => {
         this.allPokemons = res;
         this.pokemons = res;
+        this.handleChangingParameters()
       },
       (err) => console.log(err),
       () => true
@@ -80,7 +97,48 @@ export class PokemonTableComponent implements OnInit {
    */
   ngOnInit() {
     this.getPokemons()
-    console.log(this)
+   // console.log(this)
+  }
+
+  /**
+   * Main handler for table filters/parameters
+   */
+  handleChangingParameters(): void {
+    let tempPokemonArr = this.allPokemons;
+
+    // filtering
+    if(this.filter !== '') {
+      tempPokemonArr = tempPokemonArr.filter(pok => pok.name.includes(this.filter) || pok.url.includes(this.filter))
+    }
+
+    // sorting
+    tempPokemonArr = tempPokemonArr.sort((pokA, pokB) => {
+      const secondTypeSort = this.sortType === 1 ? -1 : 1;
+      return pokA[this.sortColumn] > pokB[this.sortColumn] ? this.sortType : secondTypeSort;
+
+    })
+
+    // count of all rows
+    this.rowsCount = tempPokemonArr.length
+    // paginate
+    // count of all pages
+    const pagesCount = Math.ceil(this.rowsCount/this.limit);
+
+    // all pages list
+    this.pages = [
+        this.page-2,
+        this.page-1,
+        this.page,
+        this.page+1,
+        this.page+2
+        ].filter(value => (value > pagesCount || value < 1) ? false : true );
+
+    //starting index of remaining array
+    this.startIndex = this.page * this.limit - this.limit + 1;
+    this.endIndex = this.page * this.limit;
+    tempPokemonArr = tempPokemonArr.filter((pok, index) => index >= this.startIndex && index <= this.endIndex)
+
+    this.pokemons = tempPokemonArr;
   }
 
   /**
@@ -88,9 +146,9 @@ export class PokemonTableComponent implements OnInit {
    * @param {string} column
    */
   onSort(column: string): void {
-    console.log(this)
     this.sortType = this.sortColumn === column ? this.sortType === 1 ? -1 : 1 : 1;
     this.sortColumn = column;
+    this.handleChangingParameters()
   }
 
   /**
@@ -99,15 +157,15 @@ export class PokemonTableComponent implements OnInit {
    */
   onLimitChange(value): void {
     this.limit = value;
-    console.log(value)
+    this.handleChangingParameters()
   }
 
   /**
    * onKey handler - handling search input
    * @param {string} column
    */
-  onSearch(value): void { // without type info
+  onSearch(value): void {
     this.filter = value;
-    console.log(this)
+    this.handleChangingParameters()
   }
 }

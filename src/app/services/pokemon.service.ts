@@ -2,8 +2,9 @@
 import { Injectable }    from '@angular/core';
 import { Jsonp, URLSearchParams, Http } from '@angular/http';
 import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/toPromise'
 import { Pokemon } from '../models/pokemon'
-import {Observable} from 'rxjs/Rx';
+import {Observable } from 'rxjs/Rx';
 // Decorator to tell Angular that this class can be injected as a service to another class
 @Injectable()
 export class PokemonService {
@@ -12,7 +13,9 @@ export class PokemonService {
   constructor(private http: Http) { }
 
   // Base URL for Petfinder API
-  private todosUrl = 'http://pokeapi.co/api/v2/generation/1';
+  private todosUrl = 'http://pokeapi.co/api/v2/generation/1/';
+
+  public pokemons: Pokemon[];
 
   getPokemons(): Observable<Pokemon[]> {
     // Return response
