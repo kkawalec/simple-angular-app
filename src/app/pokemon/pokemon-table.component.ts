@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { LocalStorageService } from 'angular-2-local-storage';
 import { Observable } from 'rxjs/Observable';
+
 import { PokemonService } from '../services/pokemon.service'
 import { Pokemon } from '../models/pokemon'
 
@@ -76,7 +77,11 @@ export class PokemonTableComponent implements OnInit {
    * constructor
    * @param {PokemonService} pokemonService
    */
-  constructor(private pokemonService: PokemonService, private router: Router) {
+  constructor(
+    private pokemonService: PokemonService,
+    private router: Router,
+    private localStorageService: LocalStorageService
+    ) {
     this.sortColumn = 'name',
     this.sortType = 1
     this.filter = '';
@@ -149,6 +154,9 @@ export class PokemonTableComponent implements OnInit {
     tempPokemonArr = tempPokemonArr.filter((pok, index) => index >= this.startIndex && index <= this.endIndex)
 
     this.pokemons = tempPokemonArr;
+
+    //localstorage
+    this.localStorageService.set('pokemonOnPage', this.endIndex-this.startIndex+1);
   }
 
   /**

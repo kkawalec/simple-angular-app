@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
+import { LocalStorageModule } from 'angular-2-local-storage';
 
 import { routing } from './app.routes';
 import { AppComponent } from './app.component';
@@ -22,7 +23,11 @@ import { PokemonService } from './services/pokemon.service'
     FormsModule,
     HttpModule,
     JsonpModule,
-    routing
+    routing,
+    LocalStorageModule.withConfig({
+      prefix: 'poke-app',
+      storageType: 'localStorage'
+    })
   ],
   providers: [
     PokemonService
