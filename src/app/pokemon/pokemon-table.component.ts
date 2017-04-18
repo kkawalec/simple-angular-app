@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { PokemonService } from '../services/pokemon.service'
@@ -75,7 +76,7 @@ export class PokemonTableComponent implements OnInit {
    * constructor
    * @param {PokemonService} pokemonService
    */
-  constructor(private pokemonService: PokemonService) {
+  constructor(private pokemonService: PokemonService, private router: Router) {
     this.sortColumn = 'name',
     this.sortType = 1
     this.filter = '';
@@ -196,5 +197,9 @@ export class PokemonTableComponent implements OnInit {
    */
   checkIfDisable(pageNumber): boolean {
     return pageNumber < 1 || pageNumber > this.lastPage;
+  }
+
+  gotoDetail(pokemonName): void {
+    this.router.navigate(['/detail', pokemonName]);
   }
 }

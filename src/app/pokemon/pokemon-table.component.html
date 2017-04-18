@@ -26,7 +26,7 @@
         <tr *ngFor="let pokemon of pokemons">
           <td>{{ pokemon.name }}</td>
           <td>{{ pokemon.url }}</td>
-          <td>DETAILS</td>
+          <td><button (click)="gotoDetail(pokemon.name)">DETAILS</button></td>
         </tr>
       </tbody>
     </table>
