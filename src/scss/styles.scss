@@ -37,4 +37,16 @@
   color: #777;
 }
 
+.search-input {
+  max-width: 300px;
+  padding-right: 0;
+}
+
+.limit-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+ // justify-content: center;
+}
+
 @import '~bootstrap/dist/css/bootstrap.css';

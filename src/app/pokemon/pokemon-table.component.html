@@ -1,16 +1,24 @@
 <h4>Pokemons - Gotta Catch Em' All!</h4>
+
+<div *ngIf="error" class="alert alert-danger">
+  {{ error }}
+</div>
 <div class="row">
   <div class="col-sm-6">
-    Limit
-    <select (change)="onLimitChange($event.target.value)" value={{limit}}>
-      <option value="10">10</option>
-      <option value="25">25</option>
-      <option value="100">100</option>
-    </select>
+    <div class="form-group limit-input">
+      <label for="limit" style="margin-right: 10px;">Limit:</label>
+      <select (change)="onLimitChange($event.target.value)" value={{limit}} id="limit" class="form-control" style="max-width: 100px;" >
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="100">100</option>
+      </select>
+    </div>
   </div>
-  <div class="col-sm-6">
-    Search:
-    <input (keyup)="onSearch($event.target.value)" value={{filter}} type="text" />
+  <div class="col-sm-6" style="padding-bottom: 10px;">
+    <div class="input-group input-sm pull-right search-input">
+      <span class="input-group-addon">Search</span>
+      <input (keyup)="onSearch($event.target.value)" value={{filter}} type="text" class="form-control" name="search" />
+    </div>
   </div>
 
   <div class="col-sm-12">
@@ -26,7 +34,7 @@
         <tr *ngFor="let pokemon of pokemons">
           <td>{{ pokemon.name }}</td>
           <td>{{ pokemon.url }}</td>
-          <td><button (click)="gotoDetail(pokemon.name)">DETAILS</button></td>
+          <td><button class="btn btn-success btn-sm" (click)="gotoDetail(pokemon.name)">DETAILS</button></td>
         </tr>
       </tbody>
     </table>

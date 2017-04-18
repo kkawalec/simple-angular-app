@@ -74,6 +74,11 @@ export class PokemonTableComponent implements OnInit {
   public endIndex: number;
 
   /**
+   * error handler
+   */
+  public error: any;
+
+  /**
    * constructor
    * @param {PokemonService} pokemonService
    */
@@ -91,6 +96,7 @@ export class PokemonTableComponent implements OnInit {
     this.startIndex = 0;
     this.endIndex = 0;
     this.rowsCount = 0;
+    this.error = null;
    }
 
   /**
@@ -103,8 +109,7 @@ export class PokemonTableComponent implements OnInit {
         this.pokemons = res;
         this.handleChangingParameters()
       },
-      (err) => console.log(err),
-      () => true
+      (err) => this.error = err
     );
   }
 
