@@ -1,19 +1,20 @@
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { Jsonp, URLSearchParams, Http } from '@angular/http';
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/toPromise'
-import { Pokemon } from '../models/pokemon'
-import {Observable } from 'rxjs/Rx';
+
+import { Pokemon } from '../models/pokemon';
 
 // Decorator to tell Angular that this class can be injected as a service to another class
 @Injectable()
 export class PokemonService {
-  constructor(private http: Http) { }
-
   /**
    * Base URL
    */
   private generationUrl = 'http://pokeapi.co/api/v2/generation/1/';
+
+  constructor(private http: Http) { }
 
   /**
    * Get all pokemons from 1 generation

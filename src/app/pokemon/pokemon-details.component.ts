@@ -1,12 +1,12 @@
 import 'rxjs/add/operator/switchMap';
-import { Component, OnInit }      from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Location }               from '@angular/common';
+import { Location } from '@angular/common';
 
-import { PokemonService } from '../services/pokemon.service'
+import { PokemonService } from '../services/pokemon.service';
 
 @Component({
-  selector: 'pokemon-details',
+  selector: 'app-pokemon-details',
   templateUrl: './pokemon-details.component.html',
 })
 export class PokemonDetailsComponent implements OnInit {

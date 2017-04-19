@@ -1,4 +1,4 @@
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PokemonTableComponent } from './pokemon/pokemon-table.component';
 import { PokemonDetailsComponent } from './pokemon/pokemon-details.component';
