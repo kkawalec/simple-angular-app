@@ -1,3 +1,6 @@
+# This project is an exercise in Angular2. 
+Live demo is at: aedriel-angular-pokemon.surge.sh
+
 # SimpleTableApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
