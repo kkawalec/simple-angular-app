@@ -2,8 +2,14 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" [routerLink]="['/pokemon']">
-        Pokemons
+        Simple Pokemon App
       </a>
+      <ul class="nav navbar-nav">
+        <li [class.active]="(router.url === '/pokemon')"><a [routerLink]="['/pokemon']">Pokemon List</a></li>
+        <li [class.active]="(router.url === '/info')"><a [routerLink]="['/info']">Pokemon?</a></li>
+      </ul>
     </div>
   </div>
+
+
 </nav>

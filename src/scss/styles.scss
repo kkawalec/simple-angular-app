@@ -39,14 +39,19 @@
 
 .search-input {
   max-width: 300px;
-  padding-right: 0;
+  margin-right: 15px;
 }
 
 .limit-input {
   display: flex;
   align-items: center;
   margin-bottom: 0;
- // justify-content: center;
+}
+
+.source {
+  font-style: italic;
+  color: #777;
+  font-size: 12px;
 }
 
 @import '~bootstrap/dist/css/bootstrap.css';

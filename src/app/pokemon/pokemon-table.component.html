@@ -3,8 +3,14 @@
 <div *ngIf="error" class="alert alert-danger">
   {{ error }}
 </div>
+
+<div *ngIf="loading" class="alert alert-info">
+  Data is loading, please wait...
+</div>
+
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-12">
+    <div style="display: flex; justify-content: space-between;">
     <div class="form-group limit-input">
       <label for="limit" style="margin-right: 10px;">Limit:</label>
       <select (change)="onLimitChange($event.target.value)" value={{limit}} id="limit" class="form-control" style="max-width: 100px;" >
@@ -13,16 +19,17 @@
         <option value="100">100</option>
       </select>
     </div>
-  </div>
-  <div class="col-sm-6" style="padding-bottom: 10px;">
-    <div class="input-group input-sm pull-right search-input">
+
+    <div class="input-group input-sm search-input">
       <span class="input-group-addon">Search</span>
       <input (keyup)="onSearch($event.target.value)" value={{filter}} type="text" class="form-control" name="search" />
     </div>
+    </div>
   </div>
-
+</div>
+<div class="row">
   <div class="col-sm-12">
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
       <thead>
         <tr>
           <th (click)="onSort('name')">Name</th>
